@@ -9,9 +9,11 @@
 <body>
     <div class="container">
         <div class="left-section">
+          <div id="category-box">
             {% for key in data %}
-                <input type="radio" name="category" value="{{ loop.index-1 }}" {% if loop.first %}checked{% endif %} onclick="handleClick('{{ loop.index-1 }}')">{{ key }}<br>
+                <input type="radio" class="chart-radio" name="category" value="{{ loop.index-1 }}" {% if loop.first %}checked{% endif %} onclick="handleClick('{{ loop.index-1 }}')">{{ key }}<br>
             {% endfor %}
+          </div>
         </div>
 
         <div class="right-section">
