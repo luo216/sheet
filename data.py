@@ -43,9 +43,31 @@ def get_date(i):
     return arr
 
 
+def bar_chart(arr):
+    # arr去重复
+    xAxis_data = list(set(arr))
+    # 声明长度为xAxis_data长度的数组，用于存放y
+    series_data = [0] * len(xAxis_data)
+    for i in arr:
+        for j in xAxis_data:
+            if i == j:
+                series_data[xAxis_data.index(j)] += 1
+
+    data = {
+        "title": {"text": "关键字统计"},
+        "tooltip": {},
+        "legend": {"data": ["test"]},
+        "xAxis": {"data": xAxis_data},
+        "yAxis": {},
+        "series": [{"name": "test", "type": "bar", "data": series_data}],
+    }
+    return data
+
+
 def main():
-    print(keywords())
-    print(get_date(0))
+    arr = get_date(0)
+    data = bar_chart(arr)
+    print(data)
 
 
 if __name__ == "__main__":
