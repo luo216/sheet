@@ -2,7 +2,21 @@ import yaml
 from openpyxl import load_workbook
 
 
-def update():
+def keywords():
+    # 读取YAML文件
+    with open("./setup.yaml", "r") as file:
+        yaml_data = yaml.safe_load(file)
+
+    # 遍历关键字列表
+    keywords = yaml_data["keywords"]
+    list = []
+    for i in range(len(keywords)):
+        list.append(keywords[i]["name"])
+
+    return list
+
+
+def get_date(i):
     # 读取YAML文件
     with open("./setup.yaml", "r") as file:
         yaml_data = yaml.safe_load(file)
@@ -14,34 +28,24 @@ def update():
     # 遍历关键字列表
     keyword = yaml_data["keywords"]
 
-    def load_data(i):
-        sheet_name = keyword[i]["sheet_name"]
-        sheet = workbook[sheet_name]
-        start_row = keyword[i]["start_add"]["row"]
-        start_col = keyword[i]["start_add"]["col"]
-        length = keyword[i]["length"]
+    sheet_name = keyword[i]["sheet_name"]
+    sheet = workbook[sheet_name]
+    start_row = keyword[i]["start_add"]["row"]
+    start_col = keyword[i]["start_add"]["col"]
+    length = keyword[i]["length"]
 
-        arr = []
-        for i in range(length):
-            arr.append(sheet.cell(row=start_row + i, column=start_col).value)
+    arr = []
+    for i in range(length):
+        arr.append(sheet.cell(row=start_row + i, column=start_col).value)
 
-        # 去除空值
-        arr = [x for x in arr if x is not None]
-        return arr
-
-    # 定义一个字典用于存储所有数据
-    data = {}
-
-    for i in range(len(keyword)):
-        # data中存储字典，key为关键字,value为数据
-        data[keyword[i]["name"]] = load_data(i)
-
-    return data
+    # 去除空值
+    arr = [x for x in arr if x is not None]
+    return arr
 
 
 def main():
-    data = update()
-    print(data)
+    print(keywords())
+    print(get_date(0))
 
 
 if __name__ == "__main__":

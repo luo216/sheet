@@ -1,36 +1,27 @@
+const index = 1; // 要发送的参数值
 // 基于准备好的dom，初始化echarts实例
 var myChart = echarts.init(document.getElementById('chart'));
-
-// 指定图表的配置项和数据
 var option = {}
-// 使用 fetch 函数获取数据
-fetch('/data')
+
+function draw_chart(index) {
+  fetch(`/data/${index}`)
     .then(response => response.json())
     .then(data => {
-        // 将获取的数据设置为 option 的数据
-        option = data
-        console.log(option);
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
-
+      // 在这里处理返回的JSON数据
+      option = data;
+      console.log(option);
+      myChart.clear();
+      myChart.setOption(option);
     })
     .catch(error => {
-        console.error('Error:', error);
+      // 在这里处理请求错误
+      console.error(error);
     });
+}
 
-    setTimeout(() => {
-        fetch('/data1')
-            .then(response => response.json())
-            .then(data => {
-                myChart.clear();
-                // 将获取的数据设置为 option 的数据
-                option = data;
-                console.log(option);
-                // 使用刚指定的配置项和数据显示图表。
-                myChart.setOption(option);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }, 3000);
+function handleClick(index) {
+  draw_chart(index);
+}
 
+
+draw_chart(0)

@@ -9,11 +9,18 @@ keywords:
       col: 4
       row: 6
     length: 100
-    chart_type: columnar
+    chart_type: bar
   - name: 民族
     sheet_name: Sheet1
     start_add:
       col: 5
       row: 6
     length: 100
-    chart_type: columnar
+    chart_type: bar
+  - name: 学历
+    sheet_name: Sheet1
+    start_add:
+      col: 8
+      row: 6
+    length: 100
+    chart_type: pie
