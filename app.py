@@ -1,4 +1,4 @@
-from data import bar_chart, keywords, get_date
+from data import type_chart, keywords, get_date
 from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
@@ -14,7 +14,7 @@ def index():
 def handle_data(index):
     index = int(index)
     arr = get_date(index)
-    data = bar_chart(arr)
+    data = type_chart(arr, index)
     return jsonify(data)
 
 

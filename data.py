@@ -43,7 +43,7 @@ def get_date(i):
     return arr
 
 
-def bar_chart(arr):
+def bar_chart(arr, index):
     # arr去重复
     xAxis_data = list(set(arr))
     # 声明长度为xAxis_data长度的数组，用于存放y
@@ -52,21 +52,93 @@ def bar_chart(arr):
         for j in xAxis_data:
             if i == j:
                 series_data[xAxis_data.index(j)] += 1
+    # 读取YAML文件
+    with open("./setup.yaml", "r") as file:
+        yaml_data = yaml.safe_load(file)
 
+    title_text = yaml_data["keywords"][index]["title"]
+    series_name = yaml_data["keywords"][index]["name"]
     data = {
-        "title": {"text": "关键字统计"},
+        "title": {"text": title_text},
         "tooltip": {},
         "legend": {"data": ["test"]},
         "xAxis": {"data": xAxis_data},
         "yAxis": {},
-        "series": [{"name": "test", "type": "bar", "data": series_data}],
+        "series": [{"name": series_name, "type": "bar", "data": series_data}],
     }
     return data
 
 
+def pie_chart(arr, index):
+    # arr去重复
+    xAxis_data = list(set(arr))
+    # 声明长度为xAxis_data长度的数组，用于存放y
+    series_data = []
+    for i in range(len(xAxis_data)):
+        series_data.append({"name": xAxis_data[i], "value": 0})
+    for i in arr:
+        for j in xAxis_data:
+            if i == j:
+                series_data[xAxis_data.index(j)]["value"] += 1
+
+    # 读取YAML文件
+    with open("./setup.yaml", "r") as file:
+        yaml_data = yaml.safe_load(file)
+
+    title_text = yaml_data["keywords"][index]["title"]
+    data = {
+        "title": {"text": title_text},
+        "series": [{"type": "pie", "data": series_data}],
+    }
+    return data
+
+
+def rose_chart(arr, index):
+    # arr去重复
+    xAxis_data = list(set(arr))
+    # 声明长度为xAxis_data长度的数组，用于存放y
+    series_data = []
+    for i in range(len(xAxis_data)):
+        series_data.append({"name": xAxis_data[i], "value": 0})
+    for i in arr:
+        for j in xAxis_data:
+            if i == j:
+                series_data[xAxis_data.index(j)]["value"] += 1
+
+    # 读取YAML文件
+    with open("./setup.yaml", "r") as file:
+        yaml_data = yaml.safe_load(file)
+
+    title_text = yaml_data["keywords"][index]["title"]
+    data = {
+        "title": {"text": title_text},
+        "series": [{"type": "pie", "data": series_data}],
+        "roseType": "area",
+    }
+    return data
+
+
+def type_chart(arr, index):
+    # 读取YAML文件
+    with open("./setup.yaml", "r") as file:
+        yaml_data = yaml.safe_load(file)
+
+    if yaml_data["keywords"][index]["chart_type"] == "bar":
+        data = bar_chart(arr, index)
+        return data
+
+    if yaml_data["keywords"][index]["chart_type"] == "pie":
+        data = pie_chart(arr, index)
+        return data
+
+    if yaml_data["keywords"][index]["chart_type"] == "rose":
+        data = rose_chart(arr, index)
+        return data
+
+
 def main():
-    arr = get_date(0)
-    data = bar_chart(arr)
+    arr = get_date(2)
+    data = type_chart(arr, 2)
     print(data)
 
 

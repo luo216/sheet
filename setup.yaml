@@ -4,13 +4,15 @@ excel_path: ./情况摸排表.xlsx
 
 keywords: 
   - name: 性别
+    title: 性别图表标题
     sheet_name: Sheet1
     start_add:
       col: 4
       row: 6
     length: 100
-    chart_type: bar
+    chart_type: rose
   - name: 民族
+    title: 民族图表标题
     sheet_name: Sheet1
     start_add:
       col: 5
@@ -18,6 +20,7 @@ keywords:
     length: 100
     chart_type: bar
   - name: 学历
+    title: 学历图表标题
     sheet_name: Sheet1
     start_add:
       col: 8
