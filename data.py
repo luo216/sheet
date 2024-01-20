@@ -40,6 +40,7 @@ def get_date(i):
 
     # 去除空值
     arr = [x for x in arr if x is not None]
+    # TODO:在这里我要添加一个对数字型的数据重排
     return arr
 
 
