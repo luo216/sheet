@@ -16,14 +16,44 @@ def keywords():
     return list
 
 
-def data_transform_int(keyword, i, arr):
-    # interval = keyword[i]["int"]["interval"]
-    # zero_show = keyword[i]["int"]["zero_show"]
-    # print(interval)
-    # print(zero_show)
-    # print(arr)
+def data_transform_int(arr):
+    # 尝试将arr中的元素转换为int类型
+    for i in range(len(arr)):
+        try:
+            arr[i] = int(arr[i])
+        except ValueError:
+            print("请注意：arr中存在非int类型的元素")
+            arr[i] = None
+
+    # 将arr中的none元素删除
+    arr = [x for x in arr if x is not None]
+    # 排序
+    arr.sort()
 
     return arr
+
+
+def summarize_classification_int(keyword, i, arr):
+    interval = keyword[i]["int"]["interval"]
+    zero_show = keyword[i]["int"]["zero_show"]
+    start_num = arr[0] - arr[0] % interval
+    end_num = arr[-1] - arr[-1] % interval + interval
+    newarr = []
+
+    for i in range(start_num, end_num, interval):
+        name = str(i) + "-" + str(i + interval)
+        newarr.append([name, 0])
+        for j in arr:
+            if j >= i and j <= i + interval:
+                newarr[-1][1] += 1
+
+    if zero_show:
+        pass
+    else:
+        # 去除元素中为0的
+        newarr = [x for x in newarr if x[1] != 0]
+
+    return newarr
 
 
 def summarize_classification(arr):
@@ -52,7 +82,8 @@ def data_type_judge(keyword, i, arr):
         return arr
     else:
         if data_type == "int":
-            arr = data_transform_int(keyword, i, arr)
+            arr = data_transform_int(arr)
+            arr = summarize_classification_int(keyword, i, arr)
             return arr
 
 
@@ -173,7 +204,7 @@ def type_chart(arr, index):
 
 
 def main():
-    arr = get_date(2)
+    arr = get_date(3)
     print(arr)
     # data = type_chart(arr, 2)
 
