@@ -31,12 +31,15 @@ def get_date(i):
     sheet_name = keyword[i]["sheet_name"]
     sheet = workbook[sheet_name]
     start_row = keyword[i]["start_add"]["row"]
-    start_col = keyword[i]["start_add"]["col"]
-    length = keyword[i]["length"]
+    # 将excel中列的字母转换为数字
+    start_col = keyword[i]["start_add"]["col"].upper()
 
     arr = []
-    for i in range(length):
-        arr.append(sheet.cell(row=start_row + i, column=start_col).value)
+    for i in sheet[start_col]:
+        arr.append(i.value)
+
+    # 去除前start_row行
+    arr = arr[start_row - 1 :]
 
     # 去除空值
     arr = [x for x in arr if x is not None]
@@ -139,8 +142,9 @@ def type_chart(arr, index):
 
 def main():
     arr = get_date(2)
-    data = type_chart(arr, 2)
-    print(data)
+    print(arr)
+    # data = type_chart(arr, 2)
+    # print(data)
 
 
 if __name__ == "__main__":
