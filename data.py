@@ -16,6 +16,46 @@ def keywords():
     return list
 
 
+def data_transform_int(keyword, i, arr):
+    # interval = keyword[i]["int"]["interval"]
+    # zero_show = keyword[i]["int"]["zero_show"]
+    # print(interval)
+    # print(zero_show)
+    # print(arr)
+
+    return arr
+
+
+def summarize_classification(arr):
+    # arr去重复
+    xAxis_data = list(set(arr))
+    # 声明长度为xAxis_data长度的数组，用于存放y
+    series_data = [0] * len(xAxis_data)
+    for i in arr:
+        for j in xAxis_data:
+            if i == j:
+                series_data[xAxis_data.index(j)] += 1
+
+    # 创建一个二维数组来存储
+    arr = []
+    for i in range(len(xAxis_data)):
+        arr.append([xAxis_data[i], series_data[i]])
+
+    return arr
+
+
+def data_type_judge(keyword, i, arr):
+    data_type = keyword[i]["data_type"]
+    if data_type == "default":
+        arr = summarize_classification(arr)
+
+        return arr
+    else:
+        if data_type == "int":
+            arr = data_transform_int(keyword, i, arr)
+            return arr
+
+
 def get_date(i):
     # 读取YAML文件
     with open("./setup.yaml", "r") as file:
@@ -35,27 +75,27 @@ def get_date(i):
     start_col = keyword[i]["start_add"]["col"].upper()
 
     arr = []
-    for i in sheet[start_col]:
-        arr.append(i.value)
+    for cell in sheet[start_col]:
+        arr.append(cell.value)
 
     # 去除前start_row行
     arr = arr[start_row - 1 :]
 
     # 去除空值
     arr = [x for x in arr if x is not None]
-    # TODO:在这里我要添加一个对数字型的数据重排
+
+    arr = data_type_judge(keyword, i, arr)
+
     return arr
 
 
 def bar_chart(arr, index):
-    # arr去重复
-    xAxis_data = list(set(arr))
-    # 声明长度为xAxis_data长度的数组，用于存放y
-    series_data = [0] * len(xAxis_data)
+    xAxis_data = []
+    series_data = []
     for i in arr:
-        for j in xAxis_data:
-            if i == j:
-                series_data[xAxis_data.index(j)] += 1
+        xAxis_data.append(i[0])
+        series_data.append(i[1])
+
     # 读取YAML文件
     with open("./setup.yaml", "r") as file:
         yaml_data = yaml.safe_load(file)
@@ -74,16 +114,12 @@ def bar_chart(arr, index):
 
 
 def pie_chart(arr, index):
-    # arr去重复
-    xAxis_data = list(set(arr))
-    # 声明长度为xAxis_data长度的数组，用于存放y
+    xAxis_data = []
     series_data = []
-    for i in range(len(xAxis_data)):
-        series_data.append({"name": xAxis_data[i], "value": 0})
+
     for i in arr:
-        for j in xAxis_data:
-            if i == j:
-                series_data[xAxis_data.index(j)]["value"] += 1
+        xAxis_data.append(i[0])
+        series_data.append({"name": i[0], "value": i[1]})
 
     # 读取YAML文件
     with open("./setup.yaml", "r") as file:
@@ -98,16 +134,12 @@ def pie_chart(arr, index):
 
 
 def rose_chart(arr, index):
-    # arr去重复
-    xAxis_data = list(set(arr))
-    # 声明长度为xAxis_data长度的数组，用于存放y
+    xAxis_data = []
     series_data = []
-    for i in range(len(xAxis_data)):
-        series_data.append({"name": xAxis_data[i], "value": 0})
+
     for i in arr:
-        for j in xAxis_data:
-            if i == j:
-                series_data[xAxis_data.index(j)]["value"] += 1
+        xAxis_data.append(i[0])
+        series_data.append({"name": i[0], "value": i[1]})
 
     # 读取YAML文件
     with open("./setup.yaml", "r") as file:
@@ -144,7 +176,6 @@ def main():
     arr = get_date(2)
     print(arr)
     # data = type_chart(arr, 2)
-    # print(data)
 
 
 if __name__ == "__main__":

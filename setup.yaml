@@ -10,6 +10,7 @@ keywords:
       col: D
       row: 6
     chart_type: rose
+    data_type: default
   - name: 民族
     title: 民族图表标题
     sheet_name: Sheet1
@@ -17,6 +18,7 @@ keywords:
       col: E
       row: 6
     chart_type: bar
+    data_type: default
   - name: 学历
     title: 学历图表标题
     sheet_name: Sheet1
@@ -24,3 +26,15 @@ keywords:
       col: H
       row: 6
     chart_type: pie
+    data_type: default
+  - name: 班级人数
+    title: 班级人数图表标题
+    sheet_name: Sheet1
+    start_add:
+      col: P
+      row: 6
+    chart_type: bar
+    data_type: default
+    int:
+      interval: 5
+      zero_show: 1
