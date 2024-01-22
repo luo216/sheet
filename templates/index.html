@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Flask Example</title>
+    <script src="../static/js/echarts.min.js"></script>
+    <link rel="stylesheet" href="../static/css/index.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="left-section">
+          <div id="category-box">
+            {% for key in data %}
+                <input type="radio" class="chart-radio" name="category" value="{{ loop.index-1 }}" {% if loop.first %}checked{% endif %} onclick="handleClick('{{ loop.index-1 }}')">{{ key }}<br>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="right-section">
+            <!-- 为 ECharts 准备一个定义了宽高的 DOM -->
+            <div id="chart"></div>
+        </div>
+    </div>
+
+    <script src="../static/js/index.js"></script>
+</body>
+</html>
