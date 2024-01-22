@@ -4,7 +4,7 @@ from openpyxl import load_workbook
 
 def keywords():
     # 读取YAML文件
-    with open("./setup.yaml", "r") as file:
+    with open("./setup.yaml", "r",encoding='utf-8') as file:
         yaml_data = yaml.safe_load(file)
 
     # 遍历关键字列表
@@ -89,7 +89,7 @@ def data_type_judge(keyword, i, arr):
 
 def get_date(i):
     # 读取YAML文件
-    with open("./setup.yaml", "r") as file:
+    with open("./setup.yaml", "r",encoding='utf-8') as file:
         yaml_data = yaml.safe_load(file)
 
     # 获取Excel文件路径
