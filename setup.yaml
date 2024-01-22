@@ -1,40 +1,72 @@
 title: 表格测试
 
-excel_path: ./情况摸排表.xlsx
+excel_path: ./信息工程学院教师花名册.xlsx
 
 keywords: 
-  - name: 性别
-    title: 性别图表标题
-    sheet_name: Sheet1
+  - name: 单位及职务
+    title: 单位及职务
+    sheet_name: 信息工程学院
     start_add:
-      col: D
-      row: 6
-    chart_type: rose
+      col: c
+      row: 2
+    chart_type: pie
     data_type: default
-  - name: 民族
-    title: 民族图表标题
-    sheet_name: Sheet1
+  - name: 性别
+    title: 性别
+    sheet_name: 信息工程学院
     start_add:
-      col: E
-      row: 6
+      col: d
+      row: 2
     chart_type: bar
     data_type: default
-  - name: 学历
-    title: 学历图表标题
-    sheet_name: Sheet1
+  - name: 民族
+    title: 民族
+    sheet_name: 信息工程学院
     start_add:
-      col: H
-      row: 6
+      col: e
+      row: 2
     chart_type: pie
     data_type: default
-  - name: 班级人数
-    title: 班级人数图表标题
-    sheet_name: Sheet1
+  - name: 籍贯
+    title: 籍贯
+    sheet_name: 信息工程学院
     start_add:
-      col: P
-      row: 6
-    chart_type: pie
+      col: g
+      row: 2
+    chart_type: bar
+    data_type: default
+  - name: 年龄
+    title: 年龄
+    sheet_name: 信息工程学院
+    start_add:
+      col: i
+      row: 2
+    chart_type: bar
     data_type: int
     int:
       interval: 5
       zero_show: 1
+  - name: 学历学位
+    title: 学历学位
+    sheet_name: 信息工程学院
+    start_add:
+      col: l
+      row: 2
+    chart_type: bar
+    data_type: default
+  - name: 毕业院校及专业
+    title: 毕业院校及专业
+    sheet_name: 信息工程学院
+    start_add:
+      col: m
+      row: 2
+    chart_type: bar
+    data_type: default
+  - name: 职务
+    title: 职务
+    sheet_name: 信息工程学院
+    start_add:
+      col: n
+      row: 2
+    chart_type: rose
+    data_type: default

@@ -10,6 +10,6 @@ source venv/bin/activate
 # 安装依赖库
 echo "Installing required packages..."
 # 如果下载过慢，可以设置代理--proxy http://127.0.0.1:7890
-pip3 install -r ./packages.txt --proxy http://127.0.0.1:7898
+pip3 install -r ./packages.txt
 
 echo "Setup complete."
