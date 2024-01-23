@@ -14,8 +14,7 @@ def index():
 def handle_data(index):
     index = int(index)
     data = {}
-    arr = get_date(index)
-    data["data"] = arr
+    get_date(data, index)
     return jsonify(data)
 
 

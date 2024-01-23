@@ -8,8 +8,7 @@ function draw_chart(index) {
     .then(response => response.json())
     .then(data => {
       // 在这里处理返回的JSON数据
-      option = data;
-      console.log(option);
+      console.log(data);
       myChart.clear();
       myChart.setOption(option);
     })

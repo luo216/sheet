@@ -9,6 +9,11 @@ def read_yaml():
     return yaml_data
 
 
+def get_other_data(keywords, data, i):
+    data["title"] = keywords[i]["title"]
+    data["chart_type"] = keywords[i]["chart_type"]
+
+
 def keywords():
     yaml_data = read_yaml()
     # 遍历关键字列表
@@ -91,7 +96,7 @@ def data_type_judge(keyword, i, arr):
             return arr
 
 
-def get_date(i):
+def get_date(data, i):
     yaml_data = read_yaml()
     # 获取Excel文件路径
     excel_path = yaml_data["excel_path"]
@@ -99,6 +104,9 @@ def get_date(i):
 
     # 遍历关键字列表
     keyword = yaml_data["keywords"]
+
+    # 这里可以配置一些无关紧要的参数
+    get_other_data(keyword, data, i)
 
     sheet_name = keyword[i]["sheet_name"]
     sheet = workbook[sheet_name]
@@ -118,12 +126,13 @@ def get_date(i):
 
     arr = data_type_judge(keyword, i, arr)
 
-    return arr
+    data["data"] = arr
 
 
 def main():
-    arr = get_date(3)
-    print(arr)
+    data = {}
+    get_date(data, 1)
+    print(data)
 
 
 if __name__ == "__main__":
