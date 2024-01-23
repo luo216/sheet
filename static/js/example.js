@@ -23,7 +23,7 @@ function chart_bar(data) {
       xAxis: {
         type: 'category',
         data: [],
-        axisLabel: { interval: 0, rotate: 30 }
+        axisLabel: { interval: 0, rotate: 20 }
       },
       yAxis: {
         type: 'value'
