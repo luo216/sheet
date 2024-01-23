@@ -4,7 +4,6 @@ excel_path: ./信息工程学院教师花名册.xlsx
 
 keywords: 
   - name: 单位及职务
-    title: 单位及职务
     sheet_name: 信息工程学院
     start_add:
       col: c
@@ -12,7 +11,6 @@ keywords:
     chart_type: pie
     data_type: default
   - name: 性别
-    title: 性别
     sheet_name: 信息工程学院
     start_add:
       col: d
@@ -20,7 +18,6 @@ keywords:
     chart_type: bar
     data_type: default
   - name: 民族
-    title: 民族
     sheet_name: 信息工程学院
     start_add:
       col: e
@@ -28,7 +25,6 @@ keywords:
     chart_type: pie
     data_type: default
   - name: 籍贯
-    title: 籍贯
     sheet_name: 信息工程学院
     start_add:
       col: g
@@ -36,7 +32,6 @@ keywords:
     chart_type: bar
     data_type: default
   - name: 年龄
-    title: 年龄
     sheet_name: 信息工程学院
     start_add:
       col: i
@@ -46,8 +41,15 @@ keywords:
     int:
       interval: 5
       zero_show: 1
+    other:
+      title:
+        text: 'Referer of a Website'
+        subtext: 'Fake Data'
+        left: 'center'
+      legend:
+        orient: vertical
+        left: left
   - name: 学历学位
-    title: 学历学位
     sheet_name: 信息工程学院
     start_add:
       col: l
@@ -55,7 +57,6 @@ keywords:
     chart_type: bar
     data_type: default
   - name: 毕业院校及专业
-    title: 毕业院校及专业
     sheet_name: 信息工程学院
     start_add:
       col: m
@@ -63,7 +64,6 @@ keywords:
     chart_type: bar
     data_type: default
   - name: 职务
-    title: 职务
     sheet_name: 信息工程学院
     start_add:
       col: n

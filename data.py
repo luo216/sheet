@@ -10,8 +10,10 @@ def read_yaml():
 
 
 def get_other_data(keywords, data, i):
-    data["title"] = keywords[i]["title"]
     data["chart_type"] = keywords[i]["chart_type"]
+    # 如果有other属性，则将其赋值给data
+    if "other" in keywords[i]:
+        data["other"] = keywords[i]["other"]
 
 
 def keywords():
@@ -131,7 +133,7 @@ def get_date(data, i):
 
 def main():
     data = {}
-    get_date(data, 1)
+    get_date(data, 4)
     print(data)
 
 
