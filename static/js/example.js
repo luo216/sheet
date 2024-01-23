@@ -22,7 +22,8 @@ function chart_bar(data) {
   var option = {
       xAxis: {
         type: 'category',
-        data: []
+        data: [],
+        axisLabel: { interval: 0, rotate: 30 }
       },
       yAxis: {
         type: 'value'

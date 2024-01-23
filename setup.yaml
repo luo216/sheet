@@ -24,6 +24,13 @@ keywords:
       row: 2
     chart_type: pie
     data_type: default
+    other:
+      title:
+        text: 'Referer of a Website'
+        left: 'center'
+      legend:
+        top: 5%
+        left: center
   - name: 籍贯
     sheet_name: 信息工程学院
     start_add:
