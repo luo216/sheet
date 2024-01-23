@@ -13,13 +13,13 @@ body {
 }
 
 .right-section {
+  margin-top: 18vh;
   width: 60%;
-  padding: 20px;
 }
 
 #chart {
   width: 100%;
-  height: 600px;
+  height: 60vh;
 }
 
 .left-section {
