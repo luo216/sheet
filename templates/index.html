@@ -14,6 +14,9 @@
                 <input type="radio" class="chart-radio" name="category" value="{{ loop.index-1 }}" {% if loop.first %}checked{% endif %} onclick="handleClick('{{ loop.index-1 }}')">{{ key }}<br>
             {% endfor %}
           </div>
+          <div id="chartType-switch-box">
+            <!-- 单选框，选择图表类型 -->
+          </div>
         </div>
 
         <div class="right-section">
@@ -22,7 +25,9 @@
         </div>
     </div>
 
+    <script src="../static/js/tools.js"></script>
     <script src="../static/js/example.js"></script>
     <script src="../static/js/index.js"></script>
+    <script src="../static/js/switchChartType.js"></script>
 </body>
 </html>
