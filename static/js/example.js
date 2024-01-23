@@ -1,5 +1,6 @@
 function chart_pie(data){
   var option = {
+    tooltip: {},
     series: [
       {
         type: 'pie',
@@ -26,6 +27,7 @@ function chart_bar(data) {
       yAxis: {
         type: 'value'
       },
+      tooltip: {},
       series: [
         {
           data: [],
