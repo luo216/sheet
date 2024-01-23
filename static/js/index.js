@@ -1,7 +1,7 @@
 const index = 1; // 要发送的参数值
 // 基于准备好的dom，初始化echarts实例
 var myChart = echarts.init(document.getElementById('chart'));
-var option = {}
+var option = {};
 
 function draw_chart(index) {
   fetch(`/data/${index}`)
@@ -9,6 +9,9 @@ function draw_chart(index) {
     .then(data => {
       // 在这里处理返回的JSON数据
       console.log(data);
+      option = get_option(data);
+      Object.assign(option,data.other)
+      console.log(option);
       myChart.clear();
       myChart.setOption(option);
     })
