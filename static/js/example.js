@@ -42,12 +42,17 @@ function chart_bar(data) {
   return option
 }
 
+// 创建一个二维数组存储图表类型和对应的函数
+var chart_type_arr = [
+  ['pie', chart_pie],
+  ['bar', chart_bar]
+]
+
 function get_option(data) {
-  if (data.chart_type=='pie'){
-    return chart_pie(data.data)
-  }
-  if (data.chart_type=='bar'){
-    return chart_bar(data.data)
+  for (var i = 0; i < chart_type_arr.length; i++) {
+    if (chart_type_arr[i][0] == data.chart_type) {
+      return chart_type_arr[i][1](data.data)
+    }
   }
 
   return {}
