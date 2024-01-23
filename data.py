@@ -2,11 +2,15 @@ import yaml
 from openpyxl import load_workbook
 
 
-def keywords():
+def read_yaml():
     # 读取YAML文件
-    with open("./setup.yaml", "r",encoding='utf-8') as file:
+    with open("./setup.yaml", "r", encoding="utf-8") as file:
         yaml_data = yaml.safe_load(file)
+    return yaml_data
 
+
+def keywords():
+    yaml_data = read_yaml()
     # 遍历关键字列表
     keywords = yaml_data["keywords"]
     list = []
@@ -88,10 +92,7 @@ def data_type_judge(keyword, i, arr):
 
 
 def get_date(i):
-    # 读取YAML文件
-    with open("./setup.yaml", "r",encoding='utf-8') as file:
-        yaml_data = yaml.safe_load(file)
-
+    yaml_data = read_yaml()
     # 获取Excel文件路径
     excel_path = yaml_data["excel_path"]
     workbook = load_workbook(excel_path)
@@ -120,93 +121,9 @@ def get_date(i):
     return arr
 
 
-def bar_chart(arr, index):
-    xAxis_data = []
-    series_data = []
-    for i in arr:
-        xAxis_data.append(i[0])
-        series_data.append(i[1])
-
-    # 读取YAML文件
-    with open("./setup.yaml", "r") as file:
-        yaml_data = yaml.safe_load(file)
-
-    title_text = yaml_data["keywords"][index]["title"]
-    series_name = yaml_data["keywords"][index]["name"]
-    data = {
-        "title": {"text": title_text},
-        "tooltip": {},
-        "legend": {"data": ["test"]},
-        "xAxis": {"data": xAxis_data},
-        "yAxis": {},
-        "series": [{"name": series_name, "type": "bar", "data": series_data}],
-    }
-    return data
-
-
-def pie_chart(arr, index):
-    xAxis_data = []
-    series_data = []
-
-    for i in arr:
-        xAxis_data.append(i[0])
-        series_data.append({"name": i[0], "value": i[1]})
-
-    # 读取YAML文件
-    with open("./setup.yaml", "r") as file:
-        yaml_data = yaml.safe_load(file)
-
-    title_text = yaml_data["keywords"][index]["title"]
-    data = {
-        "title": {"text": title_text},
-        "series": [{"type": "pie", "data": series_data}],
-    }
-    return data
-
-
-def rose_chart(arr, index):
-    xAxis_data = []
-    series_data = []
-
-    for i in arr:
-        xAxis_data.append(i[0])
-        series_data.append({"name": i[0], "value": i[1]})
-
-    # 读取YAML文件
-    with open("./setup.yaml", "r") as file:
-        yaml_data = yaml.safe_load(file)
-
-    title_text = yaml_data["keywords"][index]["title"]
-    data = {
-        "title": {"text": title_text},
-        "series": [{"type": "pie", "data": series_data}],
-        "roseType": "area",
-    }
-    return data
-
-
-def type_chart(arr, index):
-    # 读取YAML文件
-    with open("./setup.yaml", "r") as file:
-        yaml_data = yaml.safe_load(file)
-
-    if yaml_data["keywords"][index]["chart_type"] == "bar":
-        data = bar_chart(arr, index)
-        return data
-
-    if yaml_data["keywords"][index]["chart_type"] == "pie":
-        data = pie_chart(arr, index)
-        return data
-
-    if yaml_data["keywords"][index]["chart_type"] == "rose":
-        data = rose_chart(arr, index)
-        return data
-
-
 def main():
     arr = get_date(3)
     print(arr)
-    # data = type_chart(arr, 2)
 
 
 if __name__ == "__main__":
