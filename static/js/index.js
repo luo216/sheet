@@ -17,7 +17,15 @@ function draw_chart(index) {
     .then(data => {
       // 在这里处理返回的JSON数据
       myData = data;
-      update(myData);
+      tmpData = data;
+      update(tmpData);
+      function test(value) {
+        console.log(value);
+      }
+      removeAllChildElements('Check-Box')
+      for (var i = 0; i < tmpData.data.length; i++) {
+        addCheckBoxToDiv('Check-Box', 'dataRange', i, tmpData.data[i][0], test)
+      }
     })
     .catch(error => {
       // 在这里处理请求错误
