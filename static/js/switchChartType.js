@@ -1,6 +1,13 @@
 function toggle_chart(value) {
-  tmpData = myData;
-  tmpData.chart_type = chart_type_arr[value][0];
+  myData.chart_type = chart_type_arr[value][0];
+  tmpData = {};
+  Object.assign(tmpData, myData);
+  tmpData.data = [];
+  for (var i = 0; i < datarangestatus.length; i++) {
+    if (datarangestatus[i]) {
+      tmpData.data.push(myData.data[i])
+    }
+  }
   update(tmpData);
 }
 

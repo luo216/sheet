@@ -25,7 +25,7 @@ function addCheckBoxToDiv(divId, name, value, label, clickFunc) {
   checkbox.value = value;
   checkbox.checked = true;
   checkbox.onclick = function() {
-    clickFunc(value);
+    clickFunc(value, checkbox.checked);
   };
 
   var checkboxLabel = document.createElement('label');

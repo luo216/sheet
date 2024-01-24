@@ -3,12 +3,27 @@ const index = 1; // 要发送的参数值
 var myChart = echarts.init(document.getElementById('chart'));
 var myData = {};
 var tmpData = {};
+var datarangestatus = [];
 
 function update(data) {
   var option = get_option(data);
   Object.assign(option,data.other)
   myChart.clear();
   myChart.setOption(option);
+}
+
+function datarange(index,checked) {
+  datarangestatus[index] = checked;
+  tmpData = {};
+  Object.assign(tmpData, myData);
+  tmpData.data = [];
+  for (var i = 0; i < datarangestatus.length; i++) {
+    if (datarangestatus[i]) {
+      tmpData.data.push(myData.data[i])
+    }
+  }
+
+  update(tmpData)
 }
 
 function draw_chart(index) {
@@ -19,12 +34,11 @@ function draw_chart(index) {
       myData = data;
       tmpData = data;
       update(tmpData);
-      function test(value) {
-        console.log(value);
-      }
       removeAllChildElements('Check-Box')
+      datarangestatus = [];
       for (var i = 0; i < tmpData.data.length; i++) {
-        addCheckBoxToDiv('Check-Box', 'dataRange', i, tmpData.data[i][0], test)
+        addCheckBoxToDiv('Check-Box', 'dataRange', i, tmpData.data[i][0], datarange)
+        datarangestatus.push(true)
       }
     })
     .catch(error => {
