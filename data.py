@@ -102,7 +102,7 @@ def get_date(data, i):
     yaml_data = read_yaml()
     # 获取Excel文件路径
     excel_path = yaml_data["excel_path"]
-    workbook = load_workbook(excel_path)
+    workbook = load_workbook(excel_path, data_only=True)
 
     # 遍历关键字列表
     keyword = yaml_data["keywords"]
